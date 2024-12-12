@@ -15,14 +15,21 @@ def check_safety(report):
             return False
     return True
 
-def solve_part1(reports):
-    sum = 0
-    for report in reports:
-        if check_safety(report):
-            sum +=1
-        
 
+def check_safety_part2(report):
+    if check_safety(report):
+        return True
+    else:
+        for i in range(len(report)):
+            poppedlist = report[:i] + report[i+1:]
+            if check_safety(poppedlist):
+                return True
+    return False
+
+def solve(reports,safety_function):
+    sum = len(list(filter(safety_function,reports)))
     return sum
 reports = get_inputs(FILE)
 
-print(solve_part1(reports))
+print("Solution to part 1 :> ",solve(reports,check_safety))
+print("Solution to part 2 :> ",solve(reports,check_safety_part2))
