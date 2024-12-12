@@ -23,6 +23,12 @@ def solve(left, right):
     for l, r in zip(left, right):
         total_sum += abs(l - r)
     return total_sum
-
+def solve_part2(left,right):
+    total_sum = 0
+    for i in left:
+        total_sum+= i*(right.count(i))
+    return total_sum
+    
 left,right = split_digits_from_file(FILE)
 print(solve(left,right))
+print(solve_part2(left, right))
